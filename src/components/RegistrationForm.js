@@ -19,7 +19,7 @@ function RegistrationForm({ onSubmit }) {
   const [errors, setErrors] = useState({});
   const [showPassword, setShowPassword] = useState(false);
 
-  // Simple country and city data
+  // My custom country and city data
   const countries = [
     { value: 'india', label: 'India' },
     { value: 'usa', label: 'USA' },
@@ -34,53 +34,61 @@ function RegistrationForm({ onSubmit }) {
     canada: ['Toronto', 'Vancouver', 'Montreal', 'Calgary']
   };
 
+  // My custom validation logic
   function validateForm() {
     let newErrors = {};
     
-    if (!formData.firstName) {
-      newErrors.firstName = 'First name is required';
+    // Name validations
+    if (!formData.firstName.trim()) {
+      newErrors.firstName = 'Hey, we need your first name!';
     }
 
-    if (!formData.lastName) {
-      newErrors.lastName = 'Last name is required';
+    if (!formData.lastName.trim()) {
+      newErrors.lastName = 'Last name is missing!';
     }
 
-    if (!formData.username) {
-      newErrors.username = 'Username is required';
+    // Username validation
+    if (!formData.username.trim()) {
+      newErrors.username = 'Pick a cool username!';
     } else if (formData.username.length < 3) {
-      newErrors.username = 'Username must be at least 3 characters';
+      newErrors.username = 'Username should be at least 3 characters long';
     }
 
-    if (!formData.email) {
-      newErrors.email = 'Email is required';
+    // Email validation
+    if (!formData.email.trim()) {
+      newErrors.email = 'Email is required!';
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      newErrors.email = 'Please enter a valid email';
+      newErrors.email = 'Oops! That email doesn\'t look right';
     }
 
+    // Password validation
     if (!formData.password) {
-      newErrors.password = 'Password is required';
+      newErrors.password = 'Create a strong password!';
     } else if (formData.password.length < 8) {
-      newErrors.password = 'Password must be at least 8 characters';
+      newErrors.password = 'Password should be at least 8 characters';
     }
 
+    // Phone validation
     if (!formData.phoneNumber) {
-      newErrors.phoneNumber = 'Phone number is required';
+      newErrors.phoneNumber = 'We need your phone number!';
     } else if (!/^\d{10}$/.test(formData.phoneNumber)) {
-      newErrors.phoneNumber = 'Please enter a valid 10-digit phone number';
+      newErrors.phoneNumber = 'Please enter a valid 10-digit number';
     }
 
+    // Location validation
     if (!formData.country) {
-      newErrors.country = 'Please select a country';
+      newErrors.country = 'Please select your country';
     }
 
     if (!formData.city) {
-      newErrors.city = 'Please select a city';
+      newErrors.city = 'Please select your city';
     }
 
+    // Document validation
     if (!formData.panNumber) {
       newErrors.panNumber = 'PAN number is required';
     } else if (!/^[A-Z]{5}[0-9]{4}[A-Z]{1}$/.test(formData.panNumber)) {
-      newErrors.panNumber = 'Please enter a valid PAN number';
+      newErrors.panNumber = 'Please enter a valid PAN number (e.g., ABCDE1234F)';
     }
 
     if (!formData.aadharNumber) {
@@ -93,6 +101,7 @@ function RegistrationForm({ onSubmit }) {
     return Object.keys(newErrors).length === 0;
   }
 
+  // My form submission handler
   function handleSubmit(e) {
     e.preventDefault();
     if (validateForm()) {
@@ -100,6 +109,7 @@ function RegistrationForm({ onSubmit }) {
     }
   }
 
+  // My input change handler
   function handleChange(e) {
     const { name, value } = e.target;
     setFormData(prev => ({
@@ -110,7 +120,7 @@ function RegistrationForm({ onSubmit }) {
 
   return (
     <div className="registration-form-container">
-      <h2>SignUp Form</h2>
+      <h2>Create Your Account</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label>First Name:</label>
@@ -120,6 +130,7 @@ function RegistrationForm({ onSubmit }) {
             value={formData.firstName}
             onChange={handleChange}
             className={errors.firstName ? 'error' : ''}
+            placeholder="Enter your first name"
           />
           {errors.firstName && <span className="error-message">{errors.firstName}</span>}
         </div>
@@ -132,6 +143,7 @@ function RegistrationForm({ onSubmit }) {
             value={formData.lastName}
             onChange={handleChange}
             className={errors.lastName ? 'error' : ''}
+            placeholder="Enter your last name"
           />
           {errors.lastName && <span className="error-message">{errors.lastName}</span>}
         </div>
@@ -144,6 +156,7 @@ function RegistrationForm({ onSubmit }) {
             value={formData.username}
             onChange={handleChange}
             className={errors.username ? 'error' : ''}
+            placeholder="Choose a username"
           />
           {errors.username && <span className="error-message">{errors.username}</span>}
         </div>
@@ -156,6 +169,7 @@ function RegistrationForm({ onSubmit }) {
             value={formData.email}
             onChange={handleChange}
             className={errors.email ? 'error' : ''}
+            placeholder="Enter your email"
           />
           {errors.email && <span className="error-message">{errors.email}</span>}
         </div>
@@ -169,6 +183,7 @@ function RegistrationForm({ onSubmit }) {
               value={formData.password}
               onChange={handleChange}
               className={errors.password ? 'error' : ''}
+              placeholder="Create a password"
             />
             <button
               type="button"
@@ -190,13 +205,14 @@ function RegistrationForm({ onSubmit }) {
               value={formData.phoneCode}
               onChange={handleChange}
               className="phone-code"
+              readOnly
             />
             <input
               type="text"
               name="phoneNumber"
               value={formData.phoneNumber}
               onChange={handleChange}
-              placeholder="Enter phone number"
+              placeholder="Enter your phone number"
               className={errors.phoneNumber ? 'error' : ''}
             />
           </div>
@@ -211,7 +227,7 @@ function RegistrationForm({ onSubmit }) {
             onChange={handleChange}
             className={errors.country ? 'error' : ''}
           >
-            <option value="">Select Country</option>
+            <option value="">Select your country</option>
             {countries.map(country => (
               <option key={country.value} value={country.value}>
                 {country.label}
@@ -230,7 +246,7 @@ function RegistrationForm({ onSubmit }) {
             className={errors.city ? 'error' : ''}
             disabled={!formData.country}
           >
-            <option value="">Select City</option>
+            <option value="">Select your city</option>
             {formData.country && cities[formData.country].map(city => (
               <option key={city} value={city}>
                 {city}
@@ -248,6 +264,7 @@ function RegistrationForm({ onSubmit }) {
             value={formData.panNumber}
             onChange={handleChange}
             className={errors.panNumber ? 'error' : ''}
+            placeholder="Enter your PAN number"
           />
           {errors.panNumber && <span className="error-message">{errors.panNumber}</span>}
         </div>
@@ -260,11 +277,14 @@ function RegistrationForm({ onSubmit }) {
             value={formData.aadharNumber}
             onChange={handleChange}
             className={errors.aadharNumber ? 'error' : ''}
+            placeholder="Enter your Aadhar number"
           />
           {errors.aadharNumber && <span className="error-message">{errors.aadharNumber}</span>}
         </div>
 
-        <button type="submit" className="submit-button">SignUp</button>
+        <button type="submit" className="submit-button">
+          Create Account
+        </button>
       </form>
     </div>
   );

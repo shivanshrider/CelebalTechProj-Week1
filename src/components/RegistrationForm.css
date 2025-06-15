@@ -2,15 +2,16 @@
   max-width: 600px;
   margin: 2rem auto;
   padding: 2rem;
-  background-color: #ffffff;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .registration-form-container h2 {
+  color: #2c3e50;
   text-align: center;
-  color: #333;
   margin-bottom: 2rem;
+  font-size: 2rem;
 }
 
 .form-group {
@@ -20,7 +21,7 @@
 .form-group label {
   display: block;
   margin-bottom: 0.5rem;
-  color: #555;
+  color: #34495e;
   font-weight: 500;
 }
 
@@ -28,21 +29,21 @@
 .form-group select {
   width: 100%;
   padding: 0.75rem;
-  border: 1px solid #ddd;
-  border-radius: 4px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
   font-size: 1rem;
+  transition: border-color 0.3s ease;
 }
 
-.form-group input.error,
-.form-group select.error {
-  border-color: #ff4444;
+.form-group input:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: #3498db;
+  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
 }
 
-.error-message {
-  color: #ff4444;
-  font-size: 0.875rem;
-  margin-top: 0.25rem;
-  display: block;
+.form-group input::placeholder {
+  color: #95a5a6;
 }
 
 .password-input {
@@ -56,9 +57,14 @@
   right: 10px;
   background: none;
   border: none;
-  color: #666;
+  color: #7f8c8d;
   cursor: pointer;
-  padding: 0.25rem 0.5rem;
+  padding: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.toggle-password:hover {
+  color: #3498db;
 }
 
 .phone-input {
@@ -68,25 +74,54 @@
 
 .phone-code {
   width: 80px !important;
+  background-color: #f8f9fa;
+}
+
+.error {
+  border-color: #e74c3c !important;
+}
+
+.error-message {
+  color: #e74c3c;
+  font-size: 0.85rem;
+  margin-top: 0.5rem;
+  display: block;
 }
 
 .submit-button {
   width: 100%;
   padding: 1rem;
-  background-color: #4CAF50;
+  background-color: #3498db;
   color: white;
   border: none;
-  border-radius: 4px;
-  font-size: 1rem;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s ease;
 }
 
 .submit-button:hover {
-  background-color: #45a049;
+  background-color: #2980b9;
 }
 
-.submit-button:disabled {
-  background-color: #cccccc;
-  cursor: not-allowed;
+.submit-button:active {
+  transform: translateY(1px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .registration-form-container {
+    margin: 1rem;
+    padding: 1.5rem;
+  }
+
+  .phone-input {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .phone-code {
+    width: 100% !important;
+  }
 } 

@@ -2,58 +2,118 @@
   max-width: 800px;
   margin: 2rem auto;
   padding: 2rem;
-  background-color: #ffffff;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.success-page h2 {
+.success-header {
   text-align: center;
-  color: #4CAF50;
   margin-bottom: 2rem;
 }
 
+.success-header h2 {
+  color: #2c3e50;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.success-header p {
+  color: #7f8c8d;
+  font-size: 1.2rem;
+}
+
 .submitted-data {
+  background: #f8f9fa;
+  padding: 2rem;
+  border-radius: 8px;
   margin-bottom: 2rem;
 }
 
 .submitted-data h3 {
-  color: #333;
+  color: #34495e;
   margin-bottom: 1.5rem;
+  font-size: 1.5rem;
 }
 
 .data-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 1.5rem;
 }
 
 .data-item {
   padding: 1rem;
-  background-color: #f8f9fa;
-  border-radius: 4px;
-  border-left: 4px solid #4CAF50;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
 .data-item strong {
-  color: #555;
-  margin-right: 0.5rem;
+  color: #7f8c8d;
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.data-item span {
+  color: #2c3e50;
+  font-size: 1.1rem;
+}
+
+.success-actions {
+  text-align: center;
 }
 
 .back-button {
-  display: block;
-  width: 200px;
-  margin: 0 auto;
-  padding: 0.75rem;
-  background-color: #4CAF50;
+  padding: 1rem 2rem;
+  background-color: #3498db;
   color: white;
   border: none;
-  border-radius: 4px;
-  font-size: 1rem;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: all 0.3s ease;
+  margin-bottom: 1.5rem;
 }
 
 .back-button:hover {
-  background-color: #45a049;
+  background-color: #2980b9;
+  transform: translateY(-2px);
+}
+
+.back-button:active {
+  transform: translateY(0);
+}
+
+.next-steps {
+  color: #7f8c8d;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.loading {
+  text-align: center;
+  color: #7f8c8d;
+  font-size: 1.2rem;
+  padding: 2rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .success-page {
+    margin: 1rem;
+    padding: 1.5rem;
+  }
+
+  .data-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .success-header h2 {
+    font-size: 2rem;
+  }
 } 
